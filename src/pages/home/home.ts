@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { CustomerService } from '../../services/domain/customer.service';
 import { IndividualService } from '../../services/domain/individual.service';
 import { CustomerDTO } from '../../models/customer.dto';
@@ -23,6 +23,7 @@ export class HomePage {
     public businessService: BusinessService,
     public customerService: CustomerService,
     public individualService: IndividualService,
+    public modalCtrl: ModalController,
     public navCtrl: NavController
   ) {
 
@@ -64,6 +65,11 @@ export class HomePage {
           this.customers.push(response);
         })
     })
+  }
+
+  onClickOpenAccountModal(customer: CustomerDTO): void {
+    let accountModal = this.modalCtrl.create('AccountPage', customer);
+    accountModal.present();
   }
 
   retrieveAvatarUrl(name: string): string {

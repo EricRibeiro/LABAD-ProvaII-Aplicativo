@@ -16,11 +16,11 @@ export class AccountService {
         return this.http.get<AccountDTO[]>(`${API_CONFIG.baseUrl}/accounts`);
     }
 
-    findById(id: number) {
+    findById(id: number): Observable<AccountDTO> {
         return this.http.get<AccountDTO>(`${API_CONFIG.baseUrl}/accounts/${id}`);
     }
 
-    findByCustomer(custId: number) {
-        return this.http.get<AccountDTO>(`${API_CONFIG.baseUrl}/accounts?filter[where][cust_id]=${custId}`);
+    findByCustomer(custId: number): Observable<AccountDTO[]> {
+        return this.http.get<AccountDTO[]>(`${API_CONFIG.baseUrl}/accounts?filter[where][cust_id]=${custId}`);
     }
 }
