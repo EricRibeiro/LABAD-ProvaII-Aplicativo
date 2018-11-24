@@ -36,6 +36,8 @@ export class HomePage {
         this.individuals = response[1];
         this.fillBusinessesCustomersData();
         this.fillIndividualsCustomersData();
+
+        console.log(this.customers);
       })
   }
 

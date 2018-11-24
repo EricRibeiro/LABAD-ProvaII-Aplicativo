@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { AccountDTO } from '../../models/account.dto';
+import { TimeUtils } from '../../services/utils/time.utils';
 
 /**
  * Generated class for the AccountDetailsPage page.
@@ -15,11 +17,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AccountDetailsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  account: AccountDTO;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public timeService: TimeUtils,
+    public viewCtrl: ViewController) {
+
+    this.account = this.navParams.data;
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AccountDetailsPage');
+  ionViewWillEnter() {
+    console.log(this.account);
+  }
+
+  onClickCloseModal(): void {
+    this.viewCtrl.dismiss(false);
+  }
+
+  formatDate(date: Date): string {
+    return (date === null) ? "-" : this.timeService.formatDate(date);
   }
 
 }

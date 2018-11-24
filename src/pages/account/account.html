@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Accounts - {{customer.name}}
+      {{customer.name}}
     </ion-title>
 
     <ion-buttons end>
@@ -15,6 +15,7 @@
 
 <ion-content padding>
   <ion-list>
+
     <ion-item *ngFor="let account of accounts" (click)="onClickOpenAccountDetailsModal(account)">
 
       <ion-avatar item-start>
@@ -23,8 +24,12 @@
 
       <h2>Nº: {{account.account_id}}</h2>
       <p ion-text color="primary" class="text-status">{{account.status}}</p>
-      <div item-end class="text-money">R${{account.avail_balance}}</div>
+      <div item-end class="text-money">${{account.avail_balance}}</div>
 
     </ion-item>
   </ion-list>
 </ion-content>
+
+<ion-footer text-center>
+  <p>Eric Ribeiro - 572469</p>
+</ion-footer>

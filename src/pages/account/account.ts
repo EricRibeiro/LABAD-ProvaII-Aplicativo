@@ -49,6 +49,8 @@ export class AccountPage {
     this.accountService.findByCustomer(this.customer.cust_id)
       .subscribe(response => {
         this.accounts = response;
+
+        console.log(this.accounts);
       })
   }
 }

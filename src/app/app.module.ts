@@ -12,6 +12,8 @@ import { CustomerService } from '../services/domain/customer.service';
 import { IndividualService } from '../services/domain/individual.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BusinessService } from '../services/domain/business.service';
+import { TimeUtils } from '../services/utils/time.utils';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
