@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { CustomerDTO } from '../../models/customer.dto';
 import { AccountService } from '../../services/domain/account.service';
 import { AccountDTO } from '../../models/account.dto';
@@ -23,6 +23,7 @@ export class AccountPage {
 
   constructor(
     public accountService: AccountService,
+    public modalCtrl: ModalController,
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController) {
@@ -35,11 +36,16 @@ export class AccountPage {
     this.retrieveAccounts();
   }
 
-  onClickCloseModal() {
+  onClickCloseModal(): void {
     this.viewCtrl.dismiss(false);
   }
 
-  retrieveAccounts() {
+  onClickOpenAccountDetailsModal(account: AccountDTO): void {
+    let accountDetailsModal = this.modalCtrl.create('AccountDetailsPage', account);
+    accountDetailsModal.present();
+  }
+
+  retrieveAccounts(): void {
     this.accountService.findByCustomer(this.customer.cust_id)
       .subscribe(response => {
         this.accounts = response;
